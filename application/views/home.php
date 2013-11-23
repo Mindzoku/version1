@@ -13,17 +13,20 @@
         <ul class="nav nav-list bs-docs-sidenav affix">
             <li class="nav-header">Categories</li>
             <li><a href="#"><i class="icon-chevron-right" ></i>Backpack</a></li>
-            <li><a href="#"><i class="icon-chevron-right"></i>Library</a></li>
-            <li><a href="#"><i class="icon-chevron-right"></i> Button groups</a></li>
+            <li><a href="#"><i class="icon-chevron-right"></i>Briefcase</a></li>
+            <li><a href="#"><i class="icon-chevron-right"></i>Ipad Bags</a></li>
+            <li><a href="#"><i class="icon-chevron-right"></i>Hand Bags</a></li>
         </ul>
     </div>
     <div class="span8">
         <ul class="thumbnails">
           <li class="span4">
             PROMOTION1
+            <img src="<? echo base_url(); ?>/assets/img/promotion/pro1.jpg" class="img-rounded">
           </li>
           <li class="span4">
             PROMOTION2
+            <img src="<? echo base_url(); ?>/assets/img/promotion/pro2.jpg" class="img-rounded">
           </li>
         </ul>
     </div>
