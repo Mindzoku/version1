@@ -10,7 +10,7 @@
     
     <!-- Categories -->
     <div class="span3 bs-docs-sidebar" >
-        <ul class="nav nav-list bs-docs-sidenav affix">
+        <ul class="nav nav-list bs-docs-sidenav">
             <li class="nav-header">Categories</li>
             <li><a href="#"><i class="icon-chevron-right" ></i>Backpack</a></li>
             <li><a href="#"><i class="icon-chevron-right"></i>Briefcase</a></li>

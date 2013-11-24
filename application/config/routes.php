@@ -39,6 +39,11 @@
 */
 
 $route['default_controller'] = "Main";
+$route['admin'] = "AdminController";
+$route['admin/add-catagory'] = "AdminController/addCatagory";
+$route['admin/add-product'] = "AdminController/addProduct";
+$route['admin/order'] = "AdminController/order";
+$route['admin/promotion'] = "AdminController/promotion";
 $route['404_override'] = '';
 
 
