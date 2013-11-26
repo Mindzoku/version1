@@ -46,6 +46,8 @@ $route['admin/order'] = "AdminController/order";
 $route['admin/promotion'] = "AdminController/promotion";
 $route['404_override'] = '';
 
+$route['product/add'] = "ProductController/addToCart";
+
 
 
 /* End of file routes.php */

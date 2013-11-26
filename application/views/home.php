@@ -5,8 +5,8 @@
 </head>
 
 <body>
-    <? $this->load->view('intro/menu'); ?>
         <div width="1024" height="350" align="middle"><iframe src="http://files.bannersnack.com/iframe/embed.html?hash=bt9s4mpp&bgcolor=%233D3D3D&wmode=opaque&t=1383461794" width="950" height="300" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true"></iframe></div>
+    <? $this->load->view('intro/menu'); ?>
     
     <!-- Categories -->
     <? $this->load->view('intro/categories'); ?>
@@ -26,7 +26,7 @@
         </ul>
 
         <!-- New Arrivals -->
-        <ul class="thumbnails" style="border-style:solid; border-width:1px; border-color:#C0C0C0;">
+        <ul class="thumbnails" style="border: 1px solid #ddd;">
             <p>&nbsp;&nbsp;<b>NEW ARRIVALS</b></p>
             <li class="span3">
                 <div class="thumbnail">
@@ -74,7 +74,7 @@
         </ul>
 
         <!-- Recommend -->
-        <ul class="thumbnails" style="border-style:solid; border-width:1px; border-color:#C0C0C0;">
+        <ul class="thumbnails" style="border: 1px solid #ddd;">
             <p>&nbsp;&nbsp;<b>RECOMMEND</b></p>
             <li class="span3">
                 <div class="thumbnail">

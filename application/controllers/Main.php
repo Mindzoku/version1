@@ -27,6 +27,17 @@ class Main extends CI_Controller {
 	{
 		$this->load->view('login');
 	}
+
+	public function product()
+	{
+		$this->load->view('user/product');
+	}
+
+	public function categories()
+	{
+		$data['cat'] = 'backpack';
+		$this->load->view('user/categories', $data);
+	}
 }
 
 /* End of file welcome.php */
