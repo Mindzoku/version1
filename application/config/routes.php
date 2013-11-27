@@ -40,14 +40,10 @@
 
 $route['default_controller'] = "Main";
 $route['admin'] = "AdminController";
-$route['admin/add-category'] = "AdminController/addCategory";
+$route['admin/add-catagory'] = "AdminController/addCatagory";
 $route['admin/add-product'] = "AdminController/addProduct";
-$route['admin/result-add-category'] = "AdminController/addingCategory";
 $route['admin/order'] = "AdminController/order";
 $route['admin/promotion'] = "AdminController/promotion";
-$route['admin/product'] = "AdminController/product";
-$route['admin/all-product'] = "AdminController/allProduct";
-$route['admin/tests'] = "AdminController/test";
 $route['404_override'] = '';
 
 $route['product/add'] = "ProductController/addToCart";

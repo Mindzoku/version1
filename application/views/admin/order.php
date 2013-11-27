@@ -1,17 +1,17 @@
 <html>
 <head>
-    <? $this->load->view('intro/header'); ?>
+    <? $this->load->view('header'); ?>
     <title>Home</title>
 </head>
 
 <body>
-    <? $this->load->view('intro/menu'); ?>
+    <? $this->load->view('menu'); ?>
     <div width="1024" height="300" align="middle">
     	<img src="<?echo base_url();?>/assets/admin-img/header.jpg">
     </div>
 
 	<!-- Catagories -->
-    <? $this->load->view('/admin/sidebar-category'); ?>
+    <? $this->load->view('/admin/sidebar-catagory'); ?>
 
     <div class="span8" style="margin-top: 2%;">
     	<div><legend><b>Order</b></legend></div>
@@ -46,6 +46,6 @@
 
 
 
-    <? $this->load->view('intro/footer'); ?>
+    <? $this->load->view('footer'); ?>
 </body>
 </html>
