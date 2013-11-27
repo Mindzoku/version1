@@ -36,13 +36,13 @@ class AdminController extends CI_Controller {
 		$data['name'] = $name;
 		$data['description'] = $description;
 
-		$this->load->model('category');
-		$is_exist = $this->category->is_exist($name);
-		if($is_exist){
+		$this->load->model('category_m');
+		$is_exist = $this->category_m->is_exist($name);
+		if($is_exist > 0){
 			$data['message'] = FALSE;
 			return $this->load->view('admin/resultAddCategory', $data);
 		}
-		$data['message'] = $this->category->insert_entry($name, $description);
+		$data['message'] = $this->category_m->insert_entry($name, $description);
 		return $this->load->view('admin/resultAddCategory', $data);
 		// //FAIL
 		// if(! $this->db->simple_query($sql)){
@@ -76,8 +76,8 @@ class AdminController extends CI_Controller {
 
 	public function product(){
 		$this->load->database();
-		$this->load->model('category');
-		$data['categories'] = $this->category->get_all_categories();
+		$this->load->model('category_m');
+		$data['categories'] = $this->category_m->get_all_categories();
 		// echo $data['categories'];
 		print_r($data['categories']);
 		$this->load->view('admin/product', $data);
