@@ -1998,7 +1998,7 @@ legend + .control-group {
 table {
   max-width: 100%;
   background-color: transparent;
-  border-collapse: collapse;
+  /*border-collapse: collapse;*/
   border-spacing: 0;
 }
 
@@ -5529,7 +5529,8 @@ input[type="submit"].btn.btn-mini {
 }
 
 .thumbnails {
-  margin-left: -20px;
+  margin-left: -0px;
+  margin-right: -20px;
   list-style: none;
   *zoom: 1;
 }
