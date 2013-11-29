@@ -22,20 +22,17 @@
 	        	<td>Modify</td>
 	        	<td>Delete</td>
 	        </tr>
-	        <tr>
-	        	<td>1</td>
-	        	<td>Backpack</td>
-	        	<td>Hippy Bag</td>
-	        	<td> <button class="btn btn-primary btn-small">Modify</button> </td>
-	        	<td> <button class="btn btn-danger btn-small">Delete</button> </td>
-	        </tr>
-	        <tr>
-	        	<td>2</td>
-	        	<td>Hand Bag</td>
-	        	<td>Hand Sholder</td>
-	        	<td> <button class="btn btn-primary btn-small">Modify</button> </td>
-	        	<td> <button class="btn btn-danger btn-small">Delete</button> </td>
-	        </tr>
+
+	        <?
+	        	$i = 1;
+	        	foreach ($categories as $category) {
+	        		echo "<tr><td>".$i++."</td>";
+	        		echo "<td>".$category['cat_name']."</td>";
+	        		echo "<td>".$category['cat_description']."</td>";
+	        		echo "<td> <a href='".site_url('admin/edit-category/'.$category['cat_id'])."' class='btn btn-primary btn-small'>Modify</a> </td>";
+	        		echo "<td> <a href='".site_url('admin/delete-category/'.$category['cat_id'])."' class='btn btn-danger btn-small'>Delete</a> </td></tr>";
+	        	}
+	        ?>
 		</table>
 		<div align="right">
 			<a href="admin/add-category" class="btn btn-primary">Add Category</a>
