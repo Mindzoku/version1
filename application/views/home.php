@@ -9,6 +9,7 @@
     <? $this->load->view('intro/menu'); ?>
     
     <!-- Categories -->
+    <!-- <? $data['categories'] = $categories; ?> -->
     <? $this->load->view('intro/categories'); ?>
 
     
@@ -26,7 +27,7 @@
         </ul>
 
         <!-- New Arrivals -->
-        <ul class="thumbnails" style="border: 1px solid #ddd;">
+        <ul class="thumbnails" style="border: 1px solid #ddd;" >
             <p>&nbsp;&nbsp;<b>NEW ARRIVALS</b></p>
             <li class="span3">
                 <div class="thumbnail">

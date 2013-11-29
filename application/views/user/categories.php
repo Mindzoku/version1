@@ -12,20 +12,29 @@
     <? $this->load->view('intro/categories'); ?>
 
     <div class="span8">
-    	<ul class="thumbnail" style="margin-right: -20px; height:500px;">
-    		<? $array = array('color', 'shape', 'size', 'a', 'b', 'c'); 
-    			foreach ($array as $key) {
+    	<ul class="thumbnail" style="margin-right: -20px; height:<?echo $height?>;" >
+    		<?
+    			foreach ($products as $product) {
     		?>
-    		<li class="span3">
-                <img src="<? echo base_url(); ?>/assets/img/new/new3.jpg" class="img-rounded">
-                <div class="caption">
-                	<p>MZK-BE01-1<br>
-                	Price : 1,250 THB</p>
-                	<p><button class="btn btn-primary" >Add to Cart</button></p>
-                </div>
-    		</li>
+
+            
+        		<li class="span3" style="margin-left: 15px; margin-top: 15px;">
+                    <div class="thumbnail" style="height:250px">
+                    <a href="<? echo site_url('product/'.$catid.'/'.$product['pd_id']); ?>" style="color:black"><img src="<? echo base_url(); ?>/assets/img/new/new3.jpg" class="img-rounded">
+                    <div class="caption">
+                    	<p><?echo $product['pd_name'];?><br></a>
+                    	Price : <? echo $product['pd_price'] ?> THB</p>
+                        <? echo form_open("product/add/".$product['pd_id']);  ?>
+                            <input type="hidden" name="qty" value="1">
+                    	   <p><button class="btn btn-primary" >Add to Cart</button></p>
+                        <? echo form_close(); ?>
+                    </div>
+                    </div>
+        		</li>
+            
     		<?}?>
     	</ul>
     </div>
 
+    <? $this->load->view('intro/footer'); ?>
 </body>
