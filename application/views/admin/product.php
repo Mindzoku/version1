@@ -17,6 +17,7 @@
 	<!-- Catagories -->
     <? $this->load->view('/admin/sidebar-category'); ?>
 
+    <? echo form_open('admin/list-product'); ?>
     <div class="span8" style="margin-top: 2%;">
     	<div><legend><b>Product</b></legend></div>
 
@@ -25,7 +26,7 @@
 		  	<div class="span4">Choose your product catagory: </div>
 		  	<div class="span3"> 
               
-                <select>
+                <select name="cat-id">
                     <?
                         foreach ($categories as $category) {
                             echo "<option value=".$category['cat_id'].">".$category['cat_name']."</option>";
@@ -36,9 +37,9 @@
 		</div>
 
 		<div align="right"> 
-			<button class="btn btn-primary">submit</button>
+			<button type="submit" class="btn btn-primary">submit</button>
 		</div>
-
+        <? echo form_close(); ?>
         
     </div>
 
