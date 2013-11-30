@@ -26,7 +26,7 @@
 		<div class="row-fluid">
     		<div class="span1"></div>
 		  	<div class="span3">Description: </div>
-		  	<div class="span4"> <textarea rows="3" id="description" name="description" value="<? echo $product['pd_description']; ?>"></textarea> </div>
+		  	<div class="span4"> <textarea rows="3" id="description" name="description"><? echo $product['pd_description']; ?></textarea> </div>
 		</div>
 
         <div class="row-fluid">

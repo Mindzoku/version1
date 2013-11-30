@@ -28,7 +28,7 @@
             }
          ?>
          <div align="right">
-            <a href="<? echo  site_url('admin/add-product/'.$cat_id); ?>" class="btn" >back</a>
+            <a href="<? echo  site_url('admin/product/'); ?>" class="btn" >back</a>
          </div>
     </div>
 

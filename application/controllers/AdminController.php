@@ -104,7 +104,7 @@ class AdminController extends CI_Controller {
 			return $this->load->view('admin/result-add-product', $data);
 		}
 
-		$cat_name = $data['cat_name'];
+		// $cat_name = $data['cat_name'];
 		$data['is_ok'] = TRUE;
 
 		//Upload image
@@ -186,14 +186,11 @@ class AdminController extends CI_Controller {
 		$filename1 = $path."/".$_FILES["image1"]["name"];
 		$filename2 = $path."/".$_FILES['image2']['name'];
 		$filename3 = $path."/".$_FILES['image3']['name'];
-		// $upload = $filename1."--".$filename2."--".$filename3;
-		// $path .= "/".$filename1;
 		$data['upload'] = "Success";
 		$date = date("Y-m-d H:i:s");
-		$data['is_ok'] = $this->product_m->insert_entry($cat_id ,$product['pd_name'], $description, $price, $quantity, $filename1, $filename2, $filename3, $date);
-			
-
-		echo $_FILES['image1']['name']."123456";
+		$data['is_ok'] = $this->product_m->update_product($product['pd_id'] ,$product['pd_name'], $description, $price, $quantity, $filename1, $filename2, $filename3, $date);
+		$data['cat_id'] = $product['cat_id'];
+		return $this->load->view('admin/result-edit-product', $data);
 	}
 
 
@@ -204,7 +201,7 @@ class AdminController extends CI_Controller {
 		$directory_name = dirname($paths['pd_image1']);
 		$data['cat_id'] = $paths['cat_id'];
 		delete_files($directory_name);
-		rmdir($paths);
+		rmdir($directory_name);
 		if(!$this->product_m->delete_product($id)){
 			$data['is_delete'] = FALSE;
 			return $this->load->view('admin/delete-product', $data);

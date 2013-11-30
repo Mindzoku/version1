@@ -18,11 +18,11 @@
         <ul class="thumbnails">
           <li class="span4">
             PROMOTION1
-            <img src="<? echo base_url(); ?>/assets/img/promotion/pro1.jpg" class="img-rounded">
+            <img src="<? echo base_url(); ?>/assets/img/promotion/pro1.jpg" width="330px" class="img-rounded">
           </li>
           <li class="span4">
             PROMOTION2
-            <img src="<? echo base_url(); ?>/assets/img/promotion/pro2.jpg" class="img-rounded">
+            <img src="<? echo base_url(); ?>/assets/img/promotion/pro2.jpg" width="330px" class="img-rounded">
           </li>
         </ul>
 
