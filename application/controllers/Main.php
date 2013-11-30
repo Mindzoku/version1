@@ -2,6 +2,14 @@
 
 class Main extends CI_Controller {
 
+	function __construct()
+    {
+    	parent::__construct();
+        // Call the Model constructor
+        $this->load->model('category_m');
+        $this->load->model('product_m');
+    }
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -19,25 +27,44 @@ class Main extends CI_Controller {
 	 */
 	public function index()
 	{
+		$data['menu'] = "home";
 		$data['title'] = "shop";
-		$this->load->view('home');
+		$data['categories'] = $this->category_m->get_all_categories();
+		$this->load->view('home', $data);
 	}
 
 	public function login()
 	{
-		$this->load->view('login');
+		// $this->load->view('auth/login', $data);
+		redirect('auth');
+
 	}
 
-	public function product()
+	public function product($catid, $pdid)
 	{
-		$this->load->view('user/product');
+		$data['product'] = $this->product_m->getProduct($catid, $pdid);
+		$data['catid'] = $catid;
+		// $data['cat_name'] = $cat_name;
+		$data['categories'] = $this->category_m->get_all_categories();
+		$this->load->view('user/product',$data);
 	}
 
-	public function categories()
+	public function categories($catid)
 	{
-		$data['cat'] = 'backpack';
+		$data['categories'] = $this->category_m->get_all_categories();
+		$data['catid'] = $catid;
+		$data['products'] = $this->product_m->get_all_product($catid);
+		if(count($data['products']) < 4) {
+			$data['height'] = "283px";
+		}
+		elseif (count($data['products']) < 7) $data['height'] = "566px";
+		elseif (count($data['products']) < 10) {
+			$data['height'] = "850px";
+		}
 		$this->load->view('user/categories', $data);
 	}
+
+
 }
 
 /* End of file welcome.php */

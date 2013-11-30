@@ -41,7 +41,7 @@
 	        		echo "<td>".$cat_name."</td>";
 	        		echo "<td>".$product['pd_qty']."</td>";
 	        		echo "<td>".$product['pd_price']."</td>";
-	        		echo "<td> <button class='btn btn-primary btn-small'>Modify</button> </td>
+	        		echo "<td> <a href='".site_url('admin/edit-product/'.$product['pd_id'])."' class='btn btn-primary btn-small'>Modify</a> </td>
 	        			  <td> <a href='".site_url('admin/delete-product/'.$product['pd_id'])."' class='btn btn-danger btn-small'>Delete</a> </td></tr>";
 	        	}
 	        ?>

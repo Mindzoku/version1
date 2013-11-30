@@ -39,10 +39,13 @@
 */
 
 $route['default_controller'] = "Main";
+$route['main'] = "Main";
 $route['admin'] = "AdminController";
 $route['admin/add-category'] = "AdminController/addCategory";
 $route['admin/add-product/(:any)'] = "AdminController/addProduct/$1";
 $route['admin/result-add-product'] = "AdminController/addingProduct";
+$route['admin/result-edit-product'] = "AdminController/edittingProduct";
+$route['admin/edit-product/(:any)'] = "AdminController/editProduct/$1";
 $route['admin/delete-product/(:any)'] = "AdminController/deleteProduct/$1";
 $route['admin/result-add-category'] = "AdminController/addingCategory";
 $route['admin/result-edit-category'] = "AdminController/updateCategory";
@@ -55,7 +58,17 @@ $route['admin/list-product'] = "AdminController/listProduct";
 $route['admin/tests'] = "AdminController/test";
 $route['404_override'] = '';
 
-$route['product/add'] = "ProductController/addToCart";
+// Auth
+$route['login'] = "Main/login";
+$route['logout'] = "auth/logout";
+$route['regis'] = "auth/create_user";
+
+
+$route['cart'] = "ProductController/getCart";
+$route['cart2'] = "ProductController/getCart2";
+$route['product/add/(:any)'] = "ProductController/addToCart/$1";
+$route['categories/(:any)'] = "Main/categories/$1";
+$route['product/(:any)'] = "Main/product/$1/$2";
 
 
 

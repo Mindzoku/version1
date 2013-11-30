@@ -97,8 +97,8 @@ class AdminController extends CI_Controller {
 		$data['name'] = $name;
 		$data['cat_id'] = $this->input->post('cat-id');
 		$cat_id = $data['cat_id'];
-		$this->load->model('category_m');
-		$data['cat_name'] = $this->category_m->get_category_name($data['cat_id']);
+		// $this->load->model('category_m');
+		// $data['cat_name'] = $this->category_m->get_category_name($data['cat_id']);
 		if($is_exist > 0){
 			$data['is_ok'] = FALSE;
 			return $this->load->view('admin/result-add-product', $data);
@@ -108,10 +108,10 @@ class AdminController extends CI_Controller {
 		$data['is_ok'] = TRUE;
 
 		//Upload image
-		$path = './uploads/'.$cat_name."/".$name;
+		$path = './uploads/'.$cat_id."/".$name;
 		
-		if(!is_dir($path)){
-				mkdir($path,0777);
+		if(!file_exists($path)){
+				mkdir($path,0777,true);
 		}
 		$config['upload_path'] = $path;
 		$config['allowed_types'] = 'gif|jpg|png|jpeg';
@@ -143,6 +143,60 @@ class AdminController extends CI_Controller {
 		/////////////////////////////////////////////
 	}
 
+	public function editProduct($id){
+		$name = $this->input->post('productName');
+		$description = $this->input->post('description');
+		$price = $this->input->post('price');
+		$quantity = $this->input->post('quantity');
+		$this->load->model('product_m');
+		$data['product'] = $this->product_m->get_product_data($id);
+		return $this->load->view('admin/edit-product', $data);
+	}
+
+	public function edittingProduct(){
+		$this->load->model('product_m');
+		$pd_id = $this->input->post('pd-id');
+		$product = $this->product_m->get_product_data($pd_id);
+		$description = $this->input->post('description');
+		$price = $this->input->post('price');
+		$quantity = $this->input->post('quantity');
+		if($_FILES['image1']['name'] == null)
+			$_FILES['image1']['name'] = basename($product['pd_image1']);
+		if($_FILES['image2']['name'] == null)
+			$_FILES['image2']['name'] = basename($product['pd_image2']);
+		if($_FILES['image3']['name'] == null)
+			$_FILES['image3']['name'] = basename($product['pd_image3']);
+
+		$cat_id = $product['cat_id'];
+		$this->load->model('category_m');
+		$cat_name = $this->category_m->get_category_name($cat_id);
+		//Upload image
+		$path = './uploads/'.$product['cat_id']."/".$product['pd_name'];
+		
+		if(!file_exists($path)){
+				mkdir($path,0777,true);
+		}
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '10000';
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('image1');
+		$this->upload->do_upload('image2');
+		$this->upload->do_upload('image3');
+		$filename1 = $path."/".$_FILES["image1"]["name"];
+		$filename2 = $path."/".$_FILES['image2']['name'];
+		$filename3 = $path."/".$_FILES['image3']['name'];
+		// $upload = $filename1."--".$filename2."--".$filename3;
+		// $path .= "/".$filename1;
+		$data['upload'] = "Success";
+		$date = date("Y-m-d H:i:s");
+		$data['is_ok'] = $this->product_m->insert_entry($cat_id ,$product['pd_name'], $description, $price, $quantity, $filename1, $filename2, $filename3, $date);
+			
+
+		echo $_FILES['image1']['name']."123456";
+	}
+
+
 	public function deleteProduct($id){
 		$this->load->model('product_m');
 		$paths = $this->product_m->get_product_files_path($id);
@@ -150,6 +204,7 @@ class AdminController extends CI_Controller {
 		$directory_name = dirname($paths['pd_image1']);
 		$data['cat_id'] = $paths['cat_id'];
 		delete_files($directory_name);
+		rmdir($paths);
 		if(!$this->product_m->delete_product($id)){
 			$data['is_delete'] = FALSE;
 			return $this->load->view('admin/delete-product', $data);

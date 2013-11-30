@@ -13,8 +13,8 @@ class Product_m extends CI_Model {
 
     function insert_entry($cat_id, $name, $description, $price, $quantity, $filename1, $filename2, $filename3, $date)
     {
-        $sql = "INSERT INTO tbl_product (cat_id,pd_name,pd_description, pd_price, pd_qty, pd_image1, pd_image2, pd_image3, pd_date) VALUES (?,?,?,?,?,?,?,?,?);"; 
-        return $this->db->query($sql, array($cat_id,$name, $description,$price,$quantity,$filename1,$filename2,$filename3,$date));
+        $sql = "INSERT INTO tbl_product (cat_id,pd_name,pd_description, pd_price, pd_qty, pd_image1, pd_image2, pd_image3, pd_date, pd_last_update) VALUES (?,?,?,?,?,?,?,?,?,?);"; 
+        return $this->db->query($sql, array($cat_id,$name, $description,$price,$quantity,$filename1,$filename2,$filename3,$date, $date));
     }
 
     function is_exist($name){
@@ -25,7 +25,7 @@ class Product_m extends CI_Model {
     }
 
     function get_all_product($cat_id){
-        $sql = "SELECT * FROM tbl_product WHERE cat_id = ? ORDER BY pd_name";
+        $sql = "SELECT * FROM tbl_product WHERE cat_id = ? ORDER BY pd_date";
         $query = $this->db->query($sql, array($cat_id));
         return $query->result_array();
     }
@@ -48,8 +48,6 @@ class Product_m extends CI_Model {
         $sql = "SELECT cat_id ,pd_image1, pd_image2, pd_image3 FROM tbl_product WHERE pd_id = ?";
         $query = $this->db->query($sql, array($id));
         return $query->row_array();
-        $path = $query->row_array();
-        echo $path['cat_id'];
     }
 
     function delete_product($id){
@@ -57,9 +55,20 @@ class Product_m extends CI_Model {
         return $this->db->query($sql, array($id));
     }
 
-    function update_product($id, $name, $description){
-        $sql = "UPDATE tbl_product SET pd_name = ?, pd_description = ? WHERE pd_id = ?";
-        return $this->db->query($sql, array($name, $description, $id));
+    function update_product($id, $name, $description, $price, $quantity, $filename1, $filename2, $filename3, $date){
+        $sql = "UPDATE tbl_product SET pd_name = ?, pd_description = ?, pd_price = ?, pd_qty = ?, pd_image1 = ?, pd_image2 = ?, pd_image3 = ?, pd_last_update = ?  WHERE pd_id = ?";
+        return $this->db->query($sql, array($name, $description, $price, $quantity, $filename1, $filename2, $filename3, $date, $id));
+    }
+
+     function getProduct($catid, $pdid)
+    {
+       $query = $this->db->get_where('tbl_product', array('pd_id' => $pdid ));
+       return $query->row_array();
+    }
+
+    function get_product_data($id){
+        $query = $this->db->query("SELECT * FROM tbl_product WHERE pd_id = ?", array($id));
+        return $query->row_array();
     }
 
 }
