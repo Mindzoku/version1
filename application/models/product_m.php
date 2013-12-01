@@ -18,8 +18,7 @@ class Product_m extends CI_Model {
     }
 
     function is_exist($name){
-        $sql = "SELECT pd_name FROM tbl_product WHERE pd_name = ?";
-        $query = $this->db->query($sql, array($name));
+        $query = $this->db->query("SELECT pd_name FROM tbl_product WHERE pd_name = ? AND pd_id <> ?", array($name));
         echo $query->num_rows(); 
         return $query->num_rows(); 
     }

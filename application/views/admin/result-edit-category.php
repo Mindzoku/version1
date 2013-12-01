@@ -19,7 +19,7 @@
     <div><legend><b>Result</b></legend></div>
         <? 
             if($message){
-                echo "Your category name has already added.<br>";
+                echo "Your category name has already edited.<br>";
                 echo "Name: ".$name;
                 echo "<br>Description: ".$description;
             }

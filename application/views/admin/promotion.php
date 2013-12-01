@@ -20,13 +20,13 @@
             <ul class="thumbnails">
               <li class="span4">
                 PROMOTION1
-                <img src="<? echo base_url(); ?>/assets/img/promotion/pro1.jpg" class="img-rounded">
-                <div align="center"><button class="btn btn-primary" type="submit">edit</button></div>
+                <img src="<? echo base_url($promotions[0]['prom_image']); ?>" width="330px" height="260px" class="img-rounded">
+                <div align="center"><a href="<? echo site_url('admin/edit-promotion/1'); ?>" class="btn btn-primary" type="submit">edit</a></div>
               </li>
               <li class="span4">
                 PROMOTION2
-                <img src="<? echo base_url(); ?>/assets/img/promotion/pro2.jpg" class="img-rounded">
-                <div align="center"><button class="btn btn-primary" type="submit">edit</button></div>
+                <img src="<? echo base_url($promotions[1]['prom_image']); ?>" width="330px" height="260px" class="img-rounded">
+                <div align="center"><a href="<? echo site_url('admin/edit-promotion/2'); ?>" class="btn btn-primary" type="submit">edit</a></div>
               </li>
             </ul>
         </div>

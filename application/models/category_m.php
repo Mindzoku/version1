@@ -20,9 +20,8 @@ class Category_m extends CI_Model {
         return $this->db->query($sql, array($name, $description));
     }
 
-    function is_exist($name){
-        $sql = "SELECT cat_name FROM tbl_category WHERE cat_name = '".$name."'";
-        $query = $this->db->query($sql);
+    function is_exist($name, $id){
+        $query = $this->db->query("SELECT cat_name FROM tbl_category WHERE cat_name = ? AND cat_id <> $id", array($name));
         return $query->num_rows(); 
         // $query = $this->db->get_where('tbl_category', array('cat_name' => $name));
         // return $query_array_result();
@@ -44,6 +43,11 @@ class Category_m extends CI_Model {
         // echo $id;
         // $query = $this->db->select('cat_name')->get_where('tbl_category', array('cat_id' => $id));
         // return $query->result_array();
+    }
+
+    function get_category_data($id){
+        $query = $this->db->query("SELECT * FROM tbl_category WHERE cat_id = ?", array($id));
+        return $query->row_array();
     }
 
     function delete_category($id){

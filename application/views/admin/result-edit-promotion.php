@@ -17,18 +17,18 @@
     <!-- Result Catagory -->
     <div class="span8" style="margin-top: 2%;">
     <div><legend><b>Result</b></legend></div>
+
         <? 
-            if($message){
-                echo "Your category name has already added.<br>";
-                echo "Name: ".$name;
-                echo "<br>Description: ".$description;
+            if($is_ok){
+                echo "<p>Your promotion has updated.</p>";
+                echo $message;
             }
             else {
-                echo "Your category name: <b>$name</b> is exist. ";
+                echo "<p>Can't update this promotion. </p>";
             }
          ?>
          <div align="right">
-            <a href="<? echo  site_url('admin'); ?>" class="btn" >back</a>
+            <a href="<? echo  site_url('admin/promotion /'); ?>" class="btn" >back</a>
          </div>
     </div>
 

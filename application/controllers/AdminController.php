@@ -40,7 +40,7 @@ class AdminController extends CI_Controller {
 		$data['description'] = $description;
 
 		$this->load->model('category_m');
-		$is_exist = $this->category_m->is_exist($name);
+		$is_exist = $this->category_m->is_exist($name, 0);
 		if($is_exist > 0){
 			$data['message'] = FALSE;
 			return $this->load->view('admin/resultAddCategory', $data);
@@ -61,13 +61,13 @@ class AdminController extends CI_Controller {
 	public function updateCategory(){
 		$name = $this->input->post('categoryName');
 		$description = $this->input->post('description');
-		$id = $this->input->post('id');
+		$id = $this->input->post('cat-id');
 
 		$data['name'] = $name;
 		$data['description'] = $description;
 
 		$this->load->model('category_m');
-		$is_exist = $this->category_m->is_exist($name);
+		$is_exist = $this->category_m->is_exist($name, $id);
 		if($is_exist > 0){
 			$data['message'] = FALSE;
 			return $this->load->view('admin/result-edit-category', $data);
@@ -77,7 +77,8 @@ class AdminController extends CI_Controller {
 	}
 
 	public function editCategory($id){
-		$data['cat_id'] = $id;
+		$this->load->model('category_m');
+		$data['category'] = $this->category_m->get_category_data($id);
 		return $this->load->view('admin/edit-category', $data);
 	}
 
@@ -150,6 +151,7 @@ class AdminController extends CI_Controller {
 		$quantity = $this->input->post('quantity');
 		$this->load->model('product_m');
 		$data['product'] = $this->product_m->get_product_data($id);
+
 		return $this->load->view('admin/edit-product', $data);
 	}
 
@@ -160,6 +162,8 @@ class AdminController extends CI_Controller {
 		$description = $this->input->post('description');
 		$price = $this->input->post('price');
 		$quantity = $this->input->post('quantity');
+
+
 		if($_FILES['image1']['name'] == null)
 			$_FILES['image1']['name'] = basename($product['pd_image1']);
 		if($_FILES['image2']['name'] == null)
@@ -215,7 +219,42 @@ class AdminController extends CI_Controller {
 	}
 
 	public function promotion(){
-		$this->load->view('admin/promotion');
+		$this->load->model('promotion_m');
+		$data['promotions'] = $this->promotion_m->get_all_promotion();
+		$this->load->view('admin/promotion', $data);
+	}
+
+	public function editPromotion($id){
+		$this->load->model('promotion_m');
+		$data['promotion'] = $this->promotion_m->get_promotion_data($id);
+		$this->load->view('admin/edit-promotion', $data);
+	}
+
+	public function updatePromotion(){
+		$id = $this->input->post('prom-id');
+		$name = $this->input->post('promotionName');
+		$description = $this->input->post('description');
+		$this->load->model('promotion_m');
+		$promotion = $this->promotion_m->get_promotion_data($id);
+
+		$path = './uploads/promotion/'.$promotion['prom_id'];
+		if(!file_exists($path)){
+				mkdir($path,0777,true);
+		}
+		if($_FILES['image']['name'] == null){
+			$_FILES['image']['name'] = basename($promotion['prom_image']);
+		}
+		$config['upload_path'] = $path;
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['max_size']	= '10000';
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('image');
+		$filename = $path."/".$_FILES['image']['name'];
+		$date = date("Y-m-d H:i:s");
+		$data['is_ok'] = $this->promotion_m->update_promotion($promotion['prom_id'] ,$name, $description, $filename, $date);
+		
+		$data['message'] = $this->upload->display_errors();
+		$this->load->view('admin/result-edit-promotion', $data);
 	}
 
 	public function product(){

@@ -12,7 +12,7 @@
     <? $this->load->view('intro/categories'); ?>
 
     <div class="span8">
-    	<ul class="thumbnail" style="height:360px">
+    	<ul >
     		<li class="span7">
     			<p><h3>My Cart</h3></p>
 

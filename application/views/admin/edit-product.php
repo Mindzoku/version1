@@ -70,7 +70,7 @@
 
 		<div align="right"> 
 			<button type="submit" class="btn btn-primary">submit</button>
-			<button class="btn">cancle</button>
+			<a href="<? echo  site_url('admin/product/'); ?>" class="btn" >back</a>
 		</div>
         <? echo form_close(); ?>
         

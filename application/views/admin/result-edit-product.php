@@ -24,7 +24,7 @@
                 echo "<p>Your product has updated.</p>";
             }
             else {
-                echo "<p>Can't update. </p>";
+                echo "<p>Product name: ".$name." is exist. </p>";
             }
          ?>
          <div align="right">
